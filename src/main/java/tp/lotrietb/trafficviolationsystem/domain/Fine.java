@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package tp.lotriet.domain;
+package tp.lotrietb.trafficviolationsystem.domain;
 
 import java.io.Serializable;
 import java.util.Date;

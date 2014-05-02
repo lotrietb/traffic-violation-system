@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package tp.lotriet.domain;
+package tp.lotrietb.trafficviolationsystem.domain;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -28,6 +28,18 @@ public class Driver implements Serializable {
     private String address;
     private String exp_date;
     private Date driver_dob;
+
+    public Driver() {
+    }
+
+    public Driver(Long id, String licence_type, String driver_name, String address, String exp_date, Date driver_dob) {
+        this.id = id;
+        this.licence_type = licence_type;
+        this.driver_name = driver_name;
+        this.address = address;
+        this.exp_date = exp_date;
+        this.driver_dob = driver_dob;
+    }
 
     public String getLicence_type() {
         return licence_type;

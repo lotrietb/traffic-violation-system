@@ -4,8 +4,9 @@
  * and open the template in the editor.
  */
 
-package tp.lotriet.domain;
+package tp.lotrietb.trafficviolationsystem.domain;
 
+import java.io.Serializable;
 import javax.persistence.Embeddable;
 
 /**
@@ -13,7 +14,7 @@ import javax.persistence.Embeddable;
  * @author Brandon1
  */
 @Embeddable
-public class violation {
+public class violation implements Serializable{
     private Long violation_code;
     private String description;
 
