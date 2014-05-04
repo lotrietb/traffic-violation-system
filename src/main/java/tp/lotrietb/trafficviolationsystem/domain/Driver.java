@@ -26,13 +26,21 @@ public class Driver implements Serializable {
     private String licence_type;
     private String driver_name;
     private String address;
-    private String exp_date;
+    private Date exp_date;
     private Date driver_dob;
+
+    public Date getExp_date() {
+        return exp_date;
+    }
+
+    public void setExp_date(Date exp_date) {
+        this.exp_date = exp_date;
+    }
 
     public Driver() {
     }
 
-    public Driver(Long id, String licence_type, String driver_name, String address, String exp_date, Date driver_dob) {
+    public Driver(Long id, String licence_type, String driver_name, String address, Date exp_date, Date driver_dob) {
         this.id = id;
         this.licence_type = licence_type;
         this.driver_name = driver_name;
@@ -63,14 +71,6 @@ public class Driver implements Serializable {
 
     public void setAddress(String address) {
         this.address = address;
-    }
-
-    public String getExp_date() {
-        return exp_date;
-    }
-
-    public void setExp_date(String exp_date) {
-        this.exp_date = exp_date;
     }
 
     public Date getDriver_dob() {
