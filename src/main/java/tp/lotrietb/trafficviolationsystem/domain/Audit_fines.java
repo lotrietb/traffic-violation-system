@@ -29,6 +29,46 @@ public class Audit_fines implements Serializable {
     private double amount_before;
     private double amount_after;
 
+    public Date getDate_changed() {
+        return date_changed;
+    }
+
+    public void setDate_changed(Date date_changed) {
+        this.date_changed = date_changed;
+    }
+
+    public Long getUser_id() {
+        return user_id;
+    }
+
+    public void setUser_id(Long user_id) {
+        this.user_id = user_id;
+    }
+
+    public Long getFine_no() {
+        return fine_no;
+    }
+
+    public void setFine_no(Long fine_no) {
+        this.fine_no = fine_no;
+    }
+
+    public double getAmount_before() {
+        return amount_before;
+    }
+
+    public void setAmount_before(double amount_before) {
+        this.amount_before = amount_before;
+    }
+
+    public double getAmount_after() {
+        return amount_after;
+    }
+
+    public void setAmount_after(double amount_after) {
+        this.amount_after = amount_after;
+    }
+
     public Long getId() {
         return id;
     }

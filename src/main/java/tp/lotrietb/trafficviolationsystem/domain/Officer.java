@@ -27,6 +27,38 @@ public class Officer implements Serializable {
     private String email;
     private int points;
 
+    public String getOfficer_name() {
+        return officer_name;
+    }
+
+    public void setOfficer_name(String officer_name) {
+        this.officer_name = officer_name;
+    }
+
+    public String getRank() {
+        return rank;
+    }
+
+    public void setRank(String rank) {
+        this.rank = rank;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public int getPoints() {
+        return points;
+    }
+
+    public void setPoints(int points) {
+        this.points = points;
+    }
+
     public Long getId() {
         return id;
     }

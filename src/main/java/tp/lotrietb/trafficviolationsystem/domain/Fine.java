@@ -32,15 +32,17 @@ public class Fine implements Serializable {
     private Date date_of_fine;
     
     @Embedded
-    private violation violation_code;
+    private violation violation;
 
-    public violation getViolation_code() {
-        return violation_code;
+    public violation getViolation() {
+        return violation;
     }
 
-    public void setViolation_code(violation violation_code) {
-        this.violation_code = violation_code;
+    public void setViolation(violation violation) {
+        this.violation = violation;
     }
+
+    
     private double violation_amount;
     private Date date_paid;
     private Date court_date;
