@@ -9,6 +9,8 @@ package tp.lotrietb.trafficviolationsystem.services.crud.impl;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 import tp.lotrietb.trafficviolationsystem.domain.Court;
 import tp.lotrietb.trafficviolationsystem.repository.CourtRepository;
 import tp.lotrietb.trafficviolationsystem.services.crud.CourtCrudService;
