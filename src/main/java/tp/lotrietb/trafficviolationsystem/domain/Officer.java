@@ -7,58 +7,29 @@
 package tp.lotrietb.trafficviolationsystem.domain;
 
 import java.io.Serializable;
+import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 
-/**
- *
- * @author Brandon1
- */
+
 @Entity
-public class Officer implements Serializable {
+public class Officer extends Person implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String officer_name;
     private String rank;
-    private String email;
     private int points;
 
-    public String getOfficer_name() {
-        return officer_name;
-    }
-
-    public void setOfficer_name(String officer_name) {
-        this.officer_name = officer_name;
-    }
-
-    public String getRank() {
-        return rank;
-    }
-
-    public void setRank(String rank) {
-        this.rank = rank;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public int getPoints() {
-        return points;
-    }
-
-    public void setPoints(int points) {
-        this.points = points;
-    }
-
+    @OneToMany(orphanRemoval=true, cascade= CascadeType.ALL)
+    @JoinColumn(name="officer_id")
+    private List<Fine> fines;
+    
     public Long getId() {
         return id;
     }
@@ -89,7 +60,23 @@ public class Officer implements Serializable {
 
     @Override
     public String toString() {
-        return "tp.lotriet.domain.Officer[ id=" + id + " ]";
+        return "tp.lotrietb.trafficviolationsystem.domain.Officer[ id=" + id + " ]";
+    }
+
+    public String getRank() {
+        return rank;
+    }
+
+    public void setRank(String rank) {
+        this.rank = rank;
+    }
+
+    public int getPoints() {
+        return points;
+    }
+
+    public void setPoints(int points) {
+        this.points = points;
     }
     
 }

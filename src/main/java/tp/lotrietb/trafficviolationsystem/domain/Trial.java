@@ -7,38 +7,28 @@
 package tp.lotrietb.trafficviolationsystem.domain;
 
 import java.io.Serializable;
-import java.util.List;
-import javax.persistence.CascadeType;
+import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
-
+/**
+ *
+ * @author Brandon1
+ */
 @Entity
-public class Driver extends Person implements Serializable {
+public class Trial implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-
-    @OneToMany(orphanRemoval=true, cascade= CascadeType.ALL)
-    @JoinColumn(name="driver_id")
-    private List<License> licenses;
+    private Date court_date;
+    private String verdict;
     
-    @OneToMany(orphanRemoval=true, cascade= CascadeType.ALL)
-    @JoinColumn(name="driver_id")
-    private List<Fine> fines;
-
-    public List<License> getLicenses() {
-        return licenses;
-    }
-
-    public void setLicenses(List<License> licenses) {
-        this.licenses = licenses;
-    }
+    @OneToOne
+    private Fine fine;
     
     public Long getId() {
         return id;
@@ -58,10 +48,10 @@ public class Driver extends Person implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Driver)) {
+        if (!(object instanceof Trial)) {
             return false;
         }
-        Driver other = (Driver) object;
+        Trial other = (Trial) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -70,7 +60,31 @@ public class Driver extends Person implements Serializable {
 
     @Override
     public String toString() {
-        return "tp.lotrietb.trafficviolationsystem.domain.Driver[ id=" + id + " ]";
+        return "tp.lotrietb.trafficviolationsystem.domain.Trial[ id=" + id + " ]";
+    }
+
+    public Date getCourt_date() {
+        return court_date;
+    }
+
+    public void setCourt_date(Date court_date) {
+        this.court_date = court_date;
+    }
+
+    public String getVerdict() {
+        return verdict;
+    }
+
+    public void setVerdict(String verdict) {
+        this.verdict = verdict;
+    }
+
+    public Fine getFine() {
+        return fine;
+    }
+
+    public void setFine(Fine fine) {
+        this.fine = fine;
     }
     
 }
