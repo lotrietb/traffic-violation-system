@@ -4,42 +4,48 @@
  * and open the template in the editor.
  */
 
-package tp.lotrietb.trafficviolationsystem.domain;
+package tp.project.trafficviolationsystem.domain;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 import javax.persistence.CascadeType;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 
 @Entity
-public class Driver extends Person implements Serializable {
+public class Fine implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-
-    @OneToMany(orphanRemoval=true, cascade= CascadeType.ALL)
-    @JoinColumn(name="driver_id")
-    private List<License> licenses;
+    
+    Date fine_date;
+    double amount;
+    
+    @OneToOne
+    private Driver driver;
+    
+    @OneToOne
+    private Officer officer;
+    
+    @Embedded
+    private Address address;
+    
+    @OneToOne
+    private FineType fine_type;
     
     @OneToMany(orphanRemoval=true, cascade= CascadeType.ALL)
-    @JoinColumn(name="driver_id")
-    private List<Fine> fines;
+    @JoinColumn(name="fine_id")
+    private List<Trial> trials;
 
-    public List<License> getLicenses() {
-        return licenses;
-    }
-
-    public void setLicenses(List<License> licenses) {
-        this.licenses = licenses;
-    }
-    
     public Long getId() {
         return id;
     }
@@ -58,10 +64,10 @@ public class Driver extends Person implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Driver)) {
+        if (!(object instanceof Fine)) {
             return false;
         }
-        Driver other = (Driver) object;
+        Fine other = (Fine) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -70,7 +76,7 @@ public class Driver extends Person implements Serializable {
 
     @Override
     public String toString() {
-        return "tp.lotrietb.trafficviolationsystem.domain.Driver[ id=" + id + " ]";
+        return "tp.lotrietb.trafficviolationsystem.domain.Fine[ id=" + id + " ]";
     }
     
 }

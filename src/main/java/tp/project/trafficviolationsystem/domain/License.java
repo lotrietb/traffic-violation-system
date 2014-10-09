@@ -4,51 +4,31 @@
  * and open the template in the editor.
  */
 
-package tp.lotrietb.trafficviolationsystem.domain;
+package tp.project.trafficviolationsystem.domain;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
-import javax.persistence.CascadeType;
-import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
-/**
- *
- * @author Brandon1
- */
+
 @Entity
-public class Fine implements Serializable {
+public class License implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    
-    Date fine_date;
-    double amount;
+
+    private int code;
+    private Date expiry_date;
     
     @OneToOne
     private Driver driver;
-    
-    @OneToOne
-    private Officer officer;
-    
-    @Embedded
-    private Address address;
-    
-    @OneToOne
-    private FineType fine_type;
-    
-    @OneToMany(orphanRemoval=true, cascade= CascadeType.ALL)
-    @JoinColumn(name="fine_id")
-    private List<Trial> trials;
-
+            
+            
     public Long getId() {
         return id;
     }
@@ -67,10 +47,10 @@ public class Fine implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Fine)) {
+        if (!(object instanceof License)) {
             return false;
         }
-        Fine other = (Fine) object;
+        License other = (License) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -79,7 +59,31 @@ public class Fine implements Serializable {
 
     @Override
     public String toString() {
-        return "tp.lotrietb.trafficviolationsystem.domain.Fine[ id=" + id + " ]";
+        return "tp.lotrietb.trafficviolationsystem.domain.License[ id=" + id + " ]";
+    }
+
+    public int getCode() {
+        return code;
+    }
+
+    public void setCode(int code) {
+        this.code = code;
+    }
+
+    public Date getExpiry_date() {
+        return expiry_date;
+    }
+
+    public void setExpiry_date(Date expiry_date) {
+        this.expiry_date = expiry_date;
+    }
+
+    public Driver getDriver() {
+        return driver;
+    }
+
+    public void setDriver(Driver driver) {
+        this.driver = driver;
     }
     
 }

@@ -4,28 +4,24 @@
  * and open the template in the editor.
  */
 
-package tp.lotrietb.trafficviolationsystem.domain;
+package tp.project.trafficviolationsystem.domain;
 
 import java.io.Serializable;
-import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
-/**
- *
- * @author Brandon1
- */
+
 @Entity
-public class Trial implements Serializable {
+public class FineType implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private Date court_date;
-    private String verdict;
+    private String name;
+    private String description;
     
     @OneToOne
     private Fine fine;
@@ -48,10 +44,10 @@ public class Trial implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Trial)) {
+        if (!(object instanceof FineType)) {
             return false;
         }
-        Trial other = (Trial) object;
+        FineType other = (FineType) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -60,31 +56,23 @@ public class Trial implements Serializable {
 
     @Override
     public String toString() {
-        return "tp.lotrietb.trafficviolationsystem.domain.Trial[ id=" + id + " ]";
+        return "tp.lotrietb.trafficviolationsystem.domain.FineType[ id=" + id + " ]";
     }
 
-    public Date getCourt_date() {
-        return court_date;
+    public String getName() {
+        return name;
     }
 
-    public void setCourt_date(Date court_date) {
-        this.court_date = court_date;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getVerdict() {
-        return verdict;
+    public String getDescription() {
+        return description;
     }
 
-    public void setVerdict(String verdict) {
-        this.verdict = verdict;
-    }
-
-    public Fine getFine() {
-        return fine;
-    }
-
-    public void setFine(Fine fine) {
-        this.fine = fine;
+    public void setDescription(String description) {
+        this.description = description;
     }
     
 }

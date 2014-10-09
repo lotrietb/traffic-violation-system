@@ -1,4 +1,4 @@
-package tp.lotrietb.trafficviolationsystem.app.conf;
+package tp.project.trafficviolationsystem.app.conf;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -26,9 +26,9 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
  * @author boniface
  */
 @Configuration
-@ComponentScan("tp.lotrietb.trafficviolationsystem")
+@ComponentScan("tp.project.trafficviolationsystem")
 @EnableTransactionManagement
-@EnableJpaRepositories(basePackages = "tp.lotrietb.trafficviolationsystem.repository")
+@EnableJpaRepositories(basePackages = "tp.project.trafficviolationsystem.repository")
 public class ConnectionConfig {
 
     @Bean
@@ -47,7 +47,7 @@ public class ConnectionConfig {
         LocalContainerEntityManagerFactoryBean lef = new LocalContainerEntityManagerFactoryBean();
         lef.setDataSource(dataSource);
         lef.setJpaVendorAdapter(jpaVendorAdapter);
-        lef.setPackagesToScan("tp.lotrietb.trafficviolationsystem.domain");
+        lef.setPackagesToScan("tp.project.trafficviolationsystem.domain");
         return lef;
     }
 

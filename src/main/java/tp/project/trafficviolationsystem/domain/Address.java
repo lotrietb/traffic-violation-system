@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package tp.lotrietb.trafficviolationsystem.domain;
+package tp.project.trafficviolationsystem.domain;
 
 import java.io.Serializable;
 import javax.persistence.Embeddable;

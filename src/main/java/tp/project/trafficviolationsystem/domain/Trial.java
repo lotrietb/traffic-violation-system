@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package tp.lotrietb.trafficviolationsystem.domain;
+package tp.project.trafficviolationsystem.domain;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -14,21 +14,18 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
-
 @Entity
-public class License implements Serializable {
+public class Trial implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-
-    private int code;
-    private Date expiry_date;
+    private Date court_date;
+    private String verdict;
     
     @OneToOne
-    private Driver driver;
-            
-            
+    private Fine fine;
+    
     public Long getId() {
         return id;
     }
@@ -47,10 +44,10 @@ public class License implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof License)) {
+        if (!(object instanceof Trial)) {
             return false;
         }
-        License other = (License) object;
+        Trial other = (Trial) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -59,31 +56,31 @@ public class License implements Serializable {
 
     @Override
     public String toString() {
-        return "tp.lotrietb.trafficviolationsystem.domain.License[ id=" + id + " ]";
+        return "tp.lotrietb.trafficviolationsystem.domain.Trial[ id=" + id + " ]";
     }
 
-    public int getCode() {
-        return code;
+    public Date getCourt_date() {
+        return court_date;
     }
 
-    public void setCode(int code) {
-        this.code = code;
+    public void setCourt_date(Date court_date) {
+        this.court_date = court_date;
     }
 
-    public Date getExpiry_date() {
-        return expiry_date;
+    public String getVerdict() {
+        return verdict;
     }
 
-    public void setExpiry_date(Date expiry_date) {
-        this.expiry_date = expiry_date;
+    public void setVerdict(String verdict) {
+        this.verdict = verdict;
     }
 
-    public Driver getDriver() {
-        return driver;
+    public Fine getFine() {
+        return fine;
     }
 
-    public void setDriver(Driver driver) {
-        this.driver = driver;
+    public void setFine(Fine fine) {
+        this.fine = fine;
     }
     
 }

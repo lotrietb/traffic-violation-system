@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package tp.lotrietb.trafficviolationsystem.domain;
+package tp.project.trafficviolationsystem.domain;
 
 import java.io.Serializable;
 import java.util.List;
@@ -18,17 +18,27 @@ import javax.persistence.OneToMany;
 
 
 @Entity
-public class Officer extends Person implements Serializable {
+public class Driver extends Person implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String rank;
-    private int points;
 
     @OneToMany(orphanRemoval=true, cascade= CascadeType.ALL)
-    @JoinColumn(name="officer_id")
+    @JoinColumn(name="driver_id")
+    private List<License> licenses;
+    
+    @OneToMany(orphanRemoval=true, cascade= CascadeType.ALL)
+    @JoinColumn(name="driver_id")
     private List<Fine> fines;
+
+    public List<License> getLicenses() {
+        return licenses;
+    }
+
+    public void setLicenses(List<License> licenses) {
+        this.licenses = licenses;
+    }
     
     public Long getId() {
         return id;
@@ -48,10 +58,10 @@ public class Officer extends Person implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Officer)) {
+        if (!(object instanceof Driver)) {
             return false;
         }
-        Officer other = (Officer) object;
+        Driver other = (Driver) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -60,23 +70,7 @@ public class Officer extends Person implements Serializable {
 
     @Override
     public String toString() {
-        return "tp.lotrietb.trafficviolationsystem.domain.Officer[ id=" + id + " ]";
-    }
-
-    public String getRank() {
-        return rank;
-    }
-
-    public void setRank(String rank) {
-        this.rank = rank;
-    }
-
-    public int getPoints() {
-        return points;
-    }
-
-    public void setPoints(int points) {
-        this.points = points;
+        return "tp.lotrietb.trafficviolationsystem.domain.Driver[ id=" + id + " ]";
     }
     
 }
