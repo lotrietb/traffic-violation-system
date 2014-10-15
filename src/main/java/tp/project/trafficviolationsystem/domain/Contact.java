@@ -7,26 +7,28 @@
 package tp.project.trafficviolationsystem.domain;
 
 import java.io.Serializable;
+import javax.persistence.Embeddable;
 
+@Embeddable
 public class Contact implements Serializable {
-    private String home_number;
-    private String cell_number;
+    private String homeNumber;
+    private String cellNumber;
     private String email;
 
-    public String getHome_number() {
-        return home_number;
+    public String getHomeNumber() {
+        return homeNumber;
     }
 
-    public void setHome_number(String home_number) {
-        this.home_number = home_number;
+    public void setHomeNumber(String homeNumber) {
+        this.homeNumber = homeNumber;
     }
 
-    public String getCell_number() {
-        return cell_number;
+    public String getCellNumber() {
+        return cellNumber;
     }
 
-    public void setCell_number(String cell_number) {
-        this.cell_number = cell_number;
+    public void setCellNumber(String cellNumber) {
+        this.cellNumber = cellNumber;
     }
 
     public String getEmail() {

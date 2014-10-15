@@ -29,53 +29,50 @@ public class LicenseRepoTest {
     public LicenseRepoTest() {
     }
 
-    // TODO add test methods here.
-    // The methods must be annotated with annotation @Test. For example:
-    //
     @Test
-    public void testCreate()
-    {
+    public void testCreate() {
         repository = ctx.getBean(LicenseRepository.class);
-        License license = new License();
-        license.setCode(8);
-        license.setExpiry_date(new Date());
-        repository.save(license);
-        id = license.getId();
+        License l = new License.Builder()
+                .code(8)
+                .expiryDate(new Date())
+                .build();
+        repository.save(l);
+        id = l.getId();
         
-        Assert.assertNotNull(license);
+        Assert.assertNotNull(l);
     }    
     
     @Test(dependsOnMethods = "testCreate", enabled = true)
-    public void testRead()
-    {
+    public void testRead() {
         repository = ctx.getBean(LicenseRepository.class);
         License license = repository.findOne(id);
+        
         Assert.assertEquals(8, license.getCode());
     }
     
     @Test(dependsOnMethods = "testRead", enabled = true)
-    public void testUpdate()
-    {
+    public void testUpdate() {
         repository = ctx.getBean(LicenseRepository.class);
         License license = repository.findOne(id);
+        License updatedLicense = new License.Builder()
+                .license(license)
+                .code(14)
+                .expiryDate(new Date())
+                .build();
+        repository.save(updatedLicense);
+        License newLicense = repository.findOne(id);
         
-        license.setCode(14);
-        license.setExpiry_date(new Date());
-        
-        repository.save(license);
-        License new_license = repository.findOne(id);
-        Assert.assertEquals(14, new_license.getCode());
+        Assert.assertEquals(14, newLicense.getCode());
     }
     
     @Test(dependsOnMethods = "testUpdate", enabled = true)
-    public void testDelete()
-    {
+    public void testDelete() {
         repository = ctx.getBean(LicenseRepository.class);
         License license = repository.findOne(id);
-        
         repository.delete(license);
-        License deleted_license = repository.findOne(id);
-        Assert.assertNull(deleted_license);
+        License deletedLicense = repository.findOne(id);
+        
+        Assert.assertNull(deletedLicense);
     }
 
     @BeforeClass

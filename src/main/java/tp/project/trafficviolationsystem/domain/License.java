@@ -21,20 +21,74 @@ public class License implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-
     private int code;
-    private Date expiry_date;
-    
+    private Date expiryDate;
     @OneToOne
     private Driver driver;
             
-            
+    private License(Builder builder) {
+        id = builder.id;
+        code = builder.code;
+        expiryDate = builder.expiryDate;
+        driver = builder.driver;
+    }
+    
+    public License() {
+    }
+    
+    public static class Builder {
+        private Long id;
+        private int code;
+        private Date expiryDate;
+        private Driver driver;
+        
+        public Builder id(Long value) {
+            id = value;
+            return this;
+        }
+        
+        public Builder code(int value) {
+            code = value;
+            return this;
+        }
+        
+        public Builder expiryDate(Date value) {
+            expiryDate = value;
+            return this;
+        }
+        
+        public Builder driver(Driver value) {
+            driver = value;
+            return this;
+        }
+        
+        public Builder license(License l) {
+            id = l.getId();
+            code = l.getCode();
+            expiryDate = l.getExpiryDate();
+            driver = l.getDriver();
+            return this;
+        }
+        
+        public License build() {
+            return new License(this);
+        }
+    }
+    
     public Long getId() {
         return id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public int getCode() {
+        return code;
+    }
+
+    public Date getExpiryDate() {
+        return expiryDate;
+    }
+
+    public Driver getDriver() {
+        return driver;
     }
 
     @Override
@@ -60,30 +114,5 @@ public class License implements Serializable {
     @Override
     public String toString() {
         return "tp.lotrietb.trafficviolationsystem.domain.License[ id=" + id + " ]";
-    }
-
-    public int getCode() {
-        return code;
-    }
-
-    public void setCode(int code) {
-        this.code = code;
-    }
-
-    public Date getExpiry_date() {
-        return expiry_date;
-    }
-
-    public void setExpiry_date(Date expiry_date) {
-        this.expiry_date = expiry_date;
-    }
-
-    public Driver getDriver() {
-        return driver;
-    }
-
-    public void setDriver(Driver driver) {
-        this.driver = driver;
-    }
-    
+    }   
 }

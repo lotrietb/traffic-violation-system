@@ -14,7 +14,7 @@ import javax.persistence.Embeddable;
 public class Address implements Serializable{
     private String street;
     private String suburb;
-    private String postal_code;
+    private String postalCode;
 
     public String getStreet() {
         return street;
@@ -32,12 +32,12 @@ public class Address implements Serializable{
         this.suburb = suburb;
     }
 
-    public String getPostal_code() {
-        return postal_code;
+    public String getPostalCode() {
+        return postalCode;
     }
 
-    public void setPostal_code(String postal_code) {
-        this.postal_code = postal_code;
+    public void SetPostalCode(String postalCode) {
+        this.postalCode = postalCode;
     }
     
     

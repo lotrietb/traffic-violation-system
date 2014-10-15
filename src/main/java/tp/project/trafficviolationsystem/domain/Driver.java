@@ -40,6 +40,14 @@ public class Driver extends Person implements Serializable {
         this.licenses = licenses;
     }
     
+    public List<Fine> getFines() {
+     return fines;
+    }
+    
+    public void setFines(List<Fine> fines) {
+        this.fines = fines;
+    }
+    
     public Long getId() {
         return id;
     }

@@ -26,32 +26,68 @@ public class Fine implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    
-    Date fine_date;
-    double amount;
-    
+    private Date fineDate;
+    private double amount;
     @OneToOne
     private Driver driver;
-    
     @OneToOne
     private Officer officer;
-    
     @Embedded
     private Address address;
-    
     @OneToOne
-    private FineType fine_type;
-    
+    private FineType fineType;
     @OneToMany(orphanRemoval=true, cascade= CascadeType.ALL)
     @JoinColumn(name="fine_id")
     private List<Trial> trials;
+    
+    private Fine(Builder builder) {
+        
+    }
+    
+    public Fine() {
+        
+    }
+    
+    private static class Builder {
+        private Long id;
+        private Date fineDate;
+        private double amount;
+        private Driver driver;
+        private Officer officer;
+        private Address address;
+        private FineType fineType;
+    }
 
     public Long getId() {
         return id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public Date getFineDate() {
+        return fineDate;
+    }
+
+    public double getAmount() {
+        return amount;
+    }
+
+    public Driver getDriver() {
+        return driver;
+    }
+
+    public Officer getOfficer() {
+        return officer;
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public FineType getFineType() {
+        return fineType;
+    }
+
+    public List<Trial> getTrials() {
+        return trials;
     }
 
     @Override
