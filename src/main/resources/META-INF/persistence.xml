@@ -8,6 +8,7 @@
     <class>tp.project.trafficviolationsystem.domain.Driver</class>
     <class>tp.project.trafficviolationsystem.domain.Fine</class>
     <class>tp.project.trafficviolationsystem.domain.License</class>
+    <class>tp.project.trafficviolationsystem.domain.Person</class>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:derby://localhost:1527/tvs"/>

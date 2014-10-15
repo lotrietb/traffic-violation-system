@@ -20,23 +20,22 @@ import tp.project.trafficviolationsystem.domain.License;
 import tp.project.trafficviolationsystem.repository.LicenseRepository;
 
 
-public class LicenseRepoTest {
-    
+public class LicenseRepoTest { 
     private Long id;
     private static ApplicationContext ctx;
-    private LicenseRepository repository;
+    private LicenseRepository repo;
     
     public LicenseRepoTest() {
     }
 
     @Test
     public void testCreate() {
-        repository = ctx.getBean(LicenseRepository.class);
+        repo = ctx.getBean(LicenseRepository.class);
         License l = new License.Builder()
                 .code(8)
                 .expiryDate(new Date())
                 .build();
-        repository.save(l);
+        repo.save(l);
         id = l.getId();
         
         Assert.assertNotNull(l);
@@ -44,33 +43,33 @@ public class LicenseRepoTest {
     
     @Test(dependsOnMethods = "testCreate", enabled = true)
     public void testRead() {
-        repository = ctx.getBean(LicenseRepository.class);
-        License license = repository.findOne(id);
+        repo = ctx.getBean(LicenseRepository.class);
+        License license = repo.findOne(id);
         
         Assert.assertEquals(8, license.getCode());
     }
     
     @Test(dependsOnMethods = "testRead", enabled = true)
     public void testUpdate() {
-        repository = ctx.getBean(LicenseRepository.class);
-        License license = repository.findOne(id);
+        repo = ctx.getBean(LicenseRepository.class);
+        License license = repo.findOne(id);
         License updatedLicense = new License.Builder()
                 .license(license)
                 .code(14)
                 .expiryDate(new Date())
                 .build();
-        repository.save(updatedLicense);
-        License newLicense = repository.findOne(id);
+        repo.save(updatedLicense);
+        License newLicense = repo.findOne(id);
         
         Assert.assertEquals(14, newLicense.getCode());
     }
     
     @Test(dependsOnMethods = "testUpdate", enabled = true)
     public void testDelete() {
-        repository = ctx.getBean(LicenseRepository.class);
-        License license = repository.findOne(id);
-        repository.delete(license);
-        License deletedLicense = repository.findOne(id);
+        repo = ctx.getBean(LicenseRepository.class);
+        License license = repo.findOne(id);
+        repo.delete(license);
+        License deletedLicense = repo.findOne(id);
         
         Assert.assertNull(deletedLicense);
     }

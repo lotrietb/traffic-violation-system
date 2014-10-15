@@ -21,17 +21,74 @@ public class FineType implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String name;
-    private String description;
-    
+    private String descr;
     @OneToOne
     private Fine fine;
     
+    private FineType(Builder builder) {
+        id = builder.id;
+        name = builder.name;
+        descr = builder.descr;
+        fine = builder.fine;
+    }
+    
+    public FineType() {
+        
+    }
+    
+    public static class Builder {
+        private Long id;
+        private String name;
+        private String descr;
+        private Fine fine;
+        
+        public Builder id(Long value) {
+            id = value;
+            return this;
+        }
+        
+        public Builder name(String value) {
+            name = value;
+            return this;
+        }
+        
+        public Builder descr(String value) {
+            descr = value;
+            return this;
+        }
+        
+        public Builder fine(Fine value) {
+            fine = value;
+            return this;
+        }
+        
+        public Builder fineType(FineType ft) {
+            id = ft.getId();
+            name = ft.getName();
+            descr = ft.getDescr();
+            fine = ft.getFine();
+            return this;
+        }
+        
+        public FineType build() {
+            return new FineType(this);
+        }
+    }
+
     public Long getId() {
         return id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public String getName() {
+        return name;
+    }
+
+    public String getDescr() {
+        return descr;
+    }
+
+    public Fine getFine() {
+        return fine;
     }
 
     @Override
@@ -57,22 +114,5 @@ public class FineType implements Serializable {
     @Override
     public String toString() {
         return "tp.lotrietb.trafficviolationsystem.domain.FineType[ id=" + id + " ]";
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-    
+    }   
 }

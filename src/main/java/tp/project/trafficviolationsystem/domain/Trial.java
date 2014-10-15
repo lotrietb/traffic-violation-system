@@ -20,18 +20,75 @@ public class Trial implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private Date court_date;
+    private Date courtDate;
     private String verdict;
-    
     @OneToOne
     private Fine fine;
     
+    private Trial(Builder builder) {
+        id = builder.id;
+        courtDate = builder.courtDate;
+        verdict = builder.verdict;
+        fine = builder.fine;
+    }
+    
+    public Trial() {
+        
+    }
+    
+    public static class Builder {
+        private Long id;
+        private Date courtDate;
+        private String verdict;
+        private Fine fine;
+        
+        public Builder id(Long value) {
+            id = value;
+            return this;
+        }
+        
+        public Builder courtDate(Date value) {
+            courtDate = value;
+            return this;
+        }
+        
+        public Builder verdict(String value) {
+            verdict = value;
+            return this;
+        }
+        
+        public Builder fine(Fine value) {
+            fine = value;
+            return this;
+        }
+        
+        public Builder trial(Trial t) {
+            id = t.getId();
+            courtDate = t.getCourtDate();
+            verdict = t.getVerdict();
+            fine = t.getFine();
+            return this;
+        } 
+        
+        public Trial build() {
+            return new Trial(this);
+        }
+    }
+
     public Long getId() {
         return id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public Date getCourtDate() {
+        return courtDate;
+    }
+
+    public String getVerdict() {
+        return verdict;
+    }
+
+    public Fine getFine() {
+        return fine;
     }
 
     @Override
@@ -57,30 +114,5 @@ public class Trial implements Serializable {
     @Override
     public String toString() {
         return "tp.lotrietb.trafficviolationsystem.domain.Trial[ id=" + id + " ]";
-    }
-
-    public Date getCourt_date() {
-        return court_date;
-    }
-
-    public void setCourt_date(Date court_date) {
-        this.court_date = court_date;
-    }
-
-    public String getVerdict() {
-        return verdict;
-    }
-
-    public void setVerdict(String verdict) {
-        this.verdict = verdict;
-    }
-
-    public Fine getFine() {
-        return fine;
-    }
-
-    public void setFine(Fine fine) {
-        this.fine = fine;
-    }
-    
+    }   
 }

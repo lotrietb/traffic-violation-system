@@ -3,54 +3,85 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package tp.project.trafficviolationsystem.domain;
 
+import java.io.Serializable;
 import javax.persistence.Embedded;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
-
-public class Person {
-    private String name;
-    private String surname;
-    private int age;
-    private String id_number;
-
+/**
+ *
+ * @author Hannes
+ */
+@Entity
+public class Person implements Serializable {
+    private static final long serialVersionUID = 1L;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    protected Long id;
+    protected String name;
+    protected String surname;
+    protected int age;
+    protected String idNum;
     @Embedded 
-    private Address address;
-    
+    protected Address addr;
     @Embedded
-    private Contact contact;
-    public String getName() {
-        return name;
+    protected Contact contact;
+
+    public Long getId() {
+        return id;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public String getName() {
+        return name;
     }
 
     public String getSurname() {
         return surname;
     }
 
-    public void setSurname(String surname) {
-        this.surname = surname;
-    }
-
     public int getAge() {
         return age;
     }
 
-    public void setAge(int age) {
-        this.age = age;
+    public String getIdNum() {
+        return idNum;
     }
 
-    public String getId_number() {
-        return id_number;
+    public Address getAddr() {
+        return addr;
     }
 
-    public void setId_number(String id_number) {
-        this.id_number = id_number;
+    public Contact getContact() {
+        return contact;
     }
-    
+
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (id != null ? id.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof Person)) {
+            return false;
+        }
+        Person other = (Person) object;
+        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "tp.project.trafficviolationsystem.domain.Person[ id=" + id + " ]";
+    }
     
 }

@@ -41,14 +41,21 @@ public class Fine implements Serializable {
     private List<Trial> trials;
     
     private Fine(Builder builder) {
-        
+        id = builder.id;
+        fineDate = builder.fineDate;
+        amount = builder.amount;
+        driver = builder.driver;
+        officer = builder.officer;
+        address = builder.address;
+        fineType = builder.fineType;
+        trials = builder.trials;
     }
     
     public Fine() {
         
     }
     
-    private static class Builder {
+    public static class Builder {
         private Long id;
         private Date fineDate;
         private double amount;
@@ -56,6 +63,63 @@ public class Fine implements Serializable {
         private Officer officer;
         private Address address;
         private FineType fineType;
+        private List<Trial> trials;
+        
+        public Builder id(Long value) {
+            id = value;
+            return this;
+        }
+        
+        public Builder fineDate(Date value) {
+            fineDate = value;
+            return this;
+        }
+        
+        public Builder amount(double value) {
+            amount = value;
+            return this;
+        }
+        
+        public Builder driver(Driver value) {
+            driver = value;
+            return this;
+        }
+        
+        public Builder officer(Officer value) {
+            officer = value;
+            return this;
+        }
+        
+        public Builder address(Address value) {
+            address = value;
+            return this;
+        }
+        
+        public Builder fineType(FineType value) {
+            fineType = value;
+            return this;
+        }
+        
+        public Builder trials(List<Trial> values) {
+            trials = values;
+            return this;
+        }
+        
+        public Builder fine(Fine f) {
+            id = f.getId();
+            fineDate = f.getFineDate();
+            amount = f.getAmount();
+            driver = f.getDriver();
+            officer = f.getOfficer();
+            address = f.getAddress();
+            fineType = f.getFineType();
+            trials = f.getTrials();
+            return this;
+        }
+        
+        public Fine build() {
+            return new Fine(this);
+        }
     }
 
     public Long getId() {

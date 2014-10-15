@@ -6,85 +6,128 @@
 
 package tp.project.trafficviolationsystem.domain;
 
-import java.io.Serializable;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 
 
 @Entity
-public class Officer extends Person implements Serializable {
-    private static final long serialVersionUID = 1L;
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+public class Officer extends Person  {
     private String rank;
     private int points;
-
     @OneToMany(orphanRemoval=true, cascade= CascadeType.ALL)
     @JoinColumn(name="officer_id")
     private List<Fine> fines;
     
-    public Long getId() {
-        return id;
+    private Officer(Builder builder) {
+        id = builder.id;
+        name = builder.name;
+        surname = builder.surname;
+        age = builder.age;
+        idNum = builder.idNum;
+        addr = builder.addr;
+        contact = builder.contact;
+        rank = builder.rank;
+        points = builder.points;
+        fines = builder.fines;
     }
-
-    public void setId(Long id) {
-        this.id = id;
+    
+    public Officer() {
+        
     }
-
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Officer)) {
-            return false;
+    
+    public static class Builder {
+        private Long id;
+        private String name;
+        private String surname;
+        private int age;
+        private String idNum;
+        private Address addr;
+        private Contact contact;
+        private String rank;
+        private int points;
+        private List<Fine> fines;
+        
+        public Builder id(Long value) {
+            id = value;
+            return this;
         }
-        Officer other = (Officer) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
-            return false;
+        
+        public Builder name(String value) {
+            name = value;
+            return this;
         }
-        return true;
-    }
-
-    @Override
-    public String toString() {
-        return "tp.lotrietb.trafficviolationsystem.domain.Officer[ id=" + id + " ]";
+        
+        public Builder surname(String value) {
+            surname = value;
+            return this;
+        }
+        
+        public Builder age(int value) {
+            age = value;
+            return this;
+        }
+        
+        public Builder idNum(String value) {
+            idNum = value;
+            return this;
+        }
+        
+        public Builder addr(Address value) {
+            addr = value;
+            return this;
+        }
+        
+        public Builder contact(Contact value) {
+            contact = value;
+            return this;
+        }
+        
+        public Builder rank(String value) {
+            rank = value;
+            return this;
+        }
+        
+        public Builder points(int value) {
+            points = value;
+            return this;
+        }
+        
+        public Builder fines(List<Fine> values) {
+            fines = values;
+            return this;
+        }
+        
+        public Builder officer(Officer o) {
+            id = o.getId();
+            name = o.getName();
+            surname = o.getSurname();
+            age = o.getAge();
+            idNum = o.getIdNum();
+            addr = o.getAddr();
+            contact = o.getContact();
+            rank = o.getRank();
+            points = o.getPoints();
+            fines = o.getFines();
+            return this;
+        }
+        
+        public Officer build() {
+            return new Officer(this);
+        }
     }
 
     public String getRank() {
         return rank;
     }
 
-    public void setRank(String rank) {
-        this.rank = rank;
-    }
-
     public int getPoints() {
         return points;
-    }
-
-    public void setPoints(int points) {
-        this.points = points;
     }
 
     public List<Fine> getFines() {
         return fines;
     }
-
-    public void setFines(List<Fine> fines) {
-        this.fines = fines;
-    }
-    
 }
